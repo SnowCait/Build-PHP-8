@@ -1,0 +1,22 @@
+name: Build
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: windows-2019
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        repository: php/php-src
+        path: php
+    - uses: actions/checkout@v2
+      with:
+        repository: Microsoft/php-sdk-binary-tools
+        path: php-sdk-binary-tools
+
+    - run: Get-ChildItem -Depth 1
