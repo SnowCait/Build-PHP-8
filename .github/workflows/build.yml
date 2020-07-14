@@ -66,22 +66,22 @@ jobs:
       - run: bin/phpsdk_version
         working-directory: php-sdk
       - run: phpsdk_version
-      - run: |
-          buildconf
-          dir
-          configure --help
-          configure --enable-cli
-          nmake
-          dir
-          git status
+      - run: buildconf
         working-directory: php-src
-#       - run: configure --help
-#         working-directory: php-src
-#       - run: configure --enable-cli
-# #       - run: configure --disable-all --enable-cli --enable-$remains
-#         working-directory: php-src
-#       - run: nmake
-#         working-directory: php-src
+      - run: configure --help
+        working-directory: php-src
+      - run: configure --enable-cli
+#       - run: configure --disable-all --enable-cli --enable-$remains
+        working-directory: php-src
+      - run: nmake
+        working-directory: php-src
+
+      - run: |
+          git status
+          Get-ChildItem -Depth 1
+        shell: powershell
+        working-directory: php-src
+
       - uses: actions/upload-artifact@v2
         with:
           name: php
