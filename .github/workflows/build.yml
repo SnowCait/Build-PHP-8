@@ -26,7 +26,7 @@ jobs:
     - run: echo "%GITHUB_WORKSPACE%"
       env:
         GITHUB_WORKSPACE: ${{ env.GITHUB_WORKSPACE }}
-    - run: echo "::add-path::%GITHUB_WORKSPACE%\bin"
+    - run: echo "::add-path::%GITHUB_WORKSPACE%\php-sdk\bin"
       env:
         GITHUB_WORKSPACE: ${{ env.GITHUB_WORKSPACE }}
 
