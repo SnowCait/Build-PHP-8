@@ -14,44 +14,65 @@ jobs:
         working-directory: php-sdk
 
     steps:
-    - uses: ilammy/msvc-dev-cmd@v1
-    - uses: actions/checkout@v2
-      with:
-        repository: Microsoft/php-sdk-binary-tools
-        path: php-sdk
+      - uses: ilammy/msvc-dev-cmd@v1
+      - uses: actions/checkout@v2
+        with:
+          repository: Microsoft/php-sdk-binary-tools
+          path: php-sdk
 
-    - run: Get-ChildItem -Depth 1
-      shell: powershell
+      - run: Get-ChildItem -Depth 1
+        shell: powershell
 
-    - run: phpsdk-vs16-x64.bat
-    - run: echo "::add-path::%GITHUB_WORKSPACE%\php-sdk\bin"
+      - run: phpsdk-vs16-x64.bat
+      - run: echo "::add-path::%GITHUB_WORKSPACE%\php-sdk\bin"
 
-    - run: |
-        git status
-        Get-ChildItem -Depth 1
-      shell: powershell
+      - run: |
+          git status
+          Get-ChildItem -Depth 1
+        shell: powershell
 
-    - run: bin\phpsdk_buildtree.bat phpmaster
+      - run: bin\phpsdk_buildtree.bat phpmaster
 
-    - run: |
-        git status
-        Get-ChildItem -Depth 2
-      shell: powershell
-      working-directory: php-sdk\phpmaster\vs16
+      - run: |
+          git status
+          Get-ChildItem -Depth 2
+        shell: powershell
+        working-directory: php-sdk\phpmaster\vs16
 
-    - uses: actions/checkout@v2
-      with:
-        repository: php/php-src
-#         ref: php-8.0.0alpha1
-        path: php-src
+      - uses: actions/checkout@v2
+        with:
+          repository: php/php-src
+  #         ref: php-8.0.0alpha1
+          path: php-src
 
-    - run: ..\php-sdk\bin\phpsdk_deps --update --branch master
-      working-directory: php-src
-      env:
-        PHP_SDK_VS: vs16
+      - run: ..\php-sdk\bin\phpsdk_deps --update --branch master
+        working-directory: php-src
+        env:
+          PHP_SDK_VS: vs16
 
-    - run: |
-        git status
-        Get-ChildItem -Depth 1
-      shell: powershell
-      working-directory: php-src
+      - run: |
+          git status
+          Get-ChildItem -Depth 1
+        shell: powershell
+        working-directory: php-sdk
+
+      - run: |
+          git status
+          Get-ChildItem -Depth 1
+        shell: powershell
+        working-directory: php-src
+
+#   compile:
+#     runs-on: windows-2019
+#     needs: [setup]
+
+#     steps:
+#       - run: phpsdk-vs16-x64.bat
+      - run: buildconf
+      - run: configure --help
+      - run: configure --disable-all --enable-cli --enable-$remains
+      - run: nmake
+      - uses: actions/upload-artifact@v2
+        with:
+          name: php
+          path: php-src/Release_TS
