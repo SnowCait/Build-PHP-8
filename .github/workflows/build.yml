@@ -23,17 +23,14 @@ jobs:
       shell: powershell
 
     - run: phpsdk-vs16-x64.bat
-    - run: echo "%GITHUB_WORKSPACE%"
     - run: echo "::add-path::%GITHUB_WORKSPACE%\php-sdk\bin"
-      env:
-        GITHUB_WORKSPACE: ${{ env.GITHUB_WORKSPACE }}
 
     - run: |
         git status
         Get-ChildItem -Depth 1
       shell: powershell
 
-    - run: phpsdk_buildtree.bat phpdev
+    - run: bin\phpsdk_buildtree.bat phpdev
 
     - run: |
         git status
@@ -47,7 +44,7 @@ jobs:
         ref: php-8.0.0alpha1
         path: php-src
 
-    - run: phpsdk_deps -u
+    - run: ..\php-sdk\bin\phpsdk_deps -u
       working-directory: php-src
 
     - run: |
