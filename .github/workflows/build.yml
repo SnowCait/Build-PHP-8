@@ -10,7 +10,7 @@ jobs:
     runs-on: windows-2019
     defaults:
       run:
-        working-directory: c:\php-sdk
+        working-directory: php-sdk
 
     steps:
 #     - uses: actions/checkout@v2
@@ -20,7 +20,7 @@ jobs:
     - uses: actions/checkout@v2
       with:
         repository: Microsoft/php-sdk-binary-tools
-        path: c:\php-sdk
+        path: php-sdk
 
     - run: Get-ChildItem -Depth 1
     
