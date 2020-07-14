@@ -24,7 +24,7 @@ jobs:
           path: php-sdk
 
       - run: phpsdk-vs16-x64.bat
-#       - run: echo "::add-path::%GITHUB_WORKSPACE%\php-sdk\bin"
+      - run: echo "::add-path::%GITHUB_WORKSPACE%\php-sdk\bin"
 
 #       - run: bin\phpsdk_buildtree.bat phpmaster
 
@@ -63,6 +63,9 @@ jobs:
 
 #     steps:
 #       - run: phpsdk-vs16-x64.bat
+      - run: bin/phpsdk_version
+        working-directory: php-sdk
+      - run: phpsdk_version
       - run: |
           buildconf
           dir
