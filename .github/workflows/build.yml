@@ -62,9 +62,10 @@ jobs:
 #       - run: phpsdk-vs16-x64.bat
       - run: buildconf
         working-directory: php-src
-      - run: configure --help
-        working-directory: php-src
-      - run: configure --disable-all --enable-cli --enable-$remains
+#       - run: configure --help
+#         working-directory: php-src
+      - run: configure --enable-cli
+#       - run: configure --disable-all --enable-cli --enable-$remains
         working-directory: php-src
       - run: nmake
         working-directory: php-src
