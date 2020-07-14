@@ -10,6 +10,7 @@ jobs:
     runs-on: windows-2019
     defaults:
       run:
+        shell: cmd
         working-directory: php-sdk
 
     steps:
@@ -23,5 +24,14 @@ jobs:
         path: php-sdk
 
     - run: Get-ChildItem -Depth 1
-    
-    - run: Start-Process phpsdk-vs16-x64.bat
+      shell: powershell
+
+    - run: phpsdk-vs16-x64.bat
+
+    - run: Get-ChildItem -Depth 1
+      shell: powershell
+
+    - run: phpsdk_buildtree phpdev
+
+    - run: Get-ChildItem -Depth 1
+      shell: powershell
