@@ -12,6 +12,8 @@ jobs:
       run:
         shell: cmd
         working-directory: php-sdk
+    env:
+      PHP_SDK_VS: vs16
 
     steps:
 #       - uses: ilammy/msvc-dev-cmd@v1
