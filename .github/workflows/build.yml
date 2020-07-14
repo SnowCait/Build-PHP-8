@@ -6,7 +6,7 @@ on:
     branches: [ master ]
 
 jobs:
-  build:
+  setup:
     runs-on: windows-2019
     defaults:
       run:
@@ -14,10 +14,6 @@ jobs:
         working-directory: php-sdk
 
     steps:
-#     - uses: actions/checkout@v2
-#       with:
-#         repository: php/php-src
-#         path: php-src
     - uses: actions/checkout@v2
       with:
         repository: Microsoft/php-sdk-binary-tools
@@ -27,13 +23,33 @@ jobs:
       shell: powershell
 
     - run: phpsdk-vs16-x64.bat
-
-    - run: Get-ChildItem -Depth 1
-      shell: powershell
     
-    - run: git status
+    - run: echo "::set-env name=PATH::${{ env.GITHUB_WORKSPACE }}\bin;${{ env.PATH }}"
 
-    - run: bin/phpsdk_buildtree.bat phpdev
-
-    - run: Get-ChildItem -Depth 1
+    - run: |
+        git status
+        Get-ChildItem -Depth 1
       shell: powershell
+
+    - run: phpsdk_buildtree phpdev
+
+    - run: |
+        git status
+        Get-ChildItem -Depth 2
+      shell: powershell
+      working-directory: php-sdk\phpdev\vs16
+
+    - uses: actions/checkout@v2
+      with:
+        repository: php/php-src
+        ref: php-8.0.0alpha1
+        path: php-src
+
+    - run: phpsdk_deps -u
+      working-directory: php-src
+
+    - run: |
+        git status
+        Get-ChildItem -Depth 1
+      shell: powershell
+      working-directory: php-src
