@@ -63,7 +63,9 @@ jobs:
 
 #     steps:
 #       - run: phpsdk-vs16-x64.bat
-      - run: buildconf
+      - run: |
+          buildconf
+          configure --help
         working-directory: php-src
 #       - run: configure --help
 #         working-directory: php-src
