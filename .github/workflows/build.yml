@@ -65,9 +65,12 @@ jobs:
 #       - run: phpsdk-vs16-x64.bat
       - run: |
           buildconf
+          dir
           configure --help
           configure --enable-cli
           nmake
+          dir
+          git status
         working-directory: php-src
 #       - run: configure --help
 #         working-directory: php-src
