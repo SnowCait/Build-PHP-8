@@ -16,7 +16,7 @@ jobs:
       PHP_SDK_VS: vs16
 
     steps:
-#       - uses: ilammy/msvc-dev-cmd@v1
+      - uses: ilammy/msvc-dev-cmd@v1
       - uses: actions/checkout@v2
         with:
           repository: Microsoft/php-sdk-binary-tools
