@@ -23,8 +23,7 @@ jobs:
       shell: powershell
 
     - run: phpsdk-vs16-x64.bat
-    
-    - run: echo "::set-env name=PATH::${{ env.GITHUB_WORKSPACE }}\bin;${{ env.PATH }}"
+    - run: echo "::add-path::${{ env.GITHUB_WORKSPACE }}\bin"
 
     - run: |
         git status
