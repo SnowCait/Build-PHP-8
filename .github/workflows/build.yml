@@ -17,7 +17,7 @@ jobs:
 #     - uses: actions/checkout@v2
 #       with:
 #         repository: php/php-src
-#         path: php
+#         path: php-src
     - uses: actions/checkout@v2
       with:
         repository: Microsoft/php-sdk-binary-tools
@@ -30,8 +30,10 @@ jobs:
 
     - run: Get-ChildItem -Depth 1
       shell: powershell
+    
+    - run: git status
 
-    - run: phpsdk_buildtree phpdev
+    - run: bin/phpsdk_buildtree.bat phpdev
 
     - run: Get-ChildItem -Depth 1
       shell: powershell
