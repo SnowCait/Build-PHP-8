@@ -31,21 +31,21 @@ jobs:
         Get-ChildItem -Depth 1
       shell: powershell
 
-    - run: bin\phpsdk_buildtree.bat phpdev
+    - run: bin\phpsdk_buildtree.bat phpmaster
 
     - run: |
         git status
         Get-ChildItem -Depth 2
       shell: powershell
-      working-directory: php-sdk\phpdev\vs16
+      working-directory: php-sdk\phpmaster\vs16
 
     - uses: actions/checkout@v2
       with:
         repository: php/php-src
-        ref: php-8.0.0alpha1
+#         ref: php-8.0.0alpha1
         path: php-src
 
-    - run: ..\php-sdk\bin\phpsdk_deps -u
+    - run: ..\php-sdk\bin\phpsdk_deps --update --branch master
       working-directory: php-src
 
     - run: |
