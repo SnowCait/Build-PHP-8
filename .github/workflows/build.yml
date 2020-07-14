@@ -66,14 +66,16 @@ jobs:
       - run: |
           buildconf
           configure --help
+          configure --enable-cli
+          nmake
         working-directory: php-src
 #       - run: configure --help
 #         working-directory: php-src
-      - run: configure --enable-cli
-#       - run: configure --disable-all --enable-cli --enable-$remains
-        working-directory: php-src
-      - run: nmake
-        working-directory: php-src
+#       - run: configure --enable-cli
+# #       - run: configure --disable-all --enable-cli --enable-$remains
+#         working-directory: php-src
+#       - run: nmake
+#         working-directory: php-src
       - uses: actions/upload-artifact@v2
         with:
           name: php
