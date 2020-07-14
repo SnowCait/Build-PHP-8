@@ -26,7 +26,7 @@ jobs:
       - run: phpsdk-vs16-x64.bat
       - run: echo ::add-path::%GITHUB_WORKSPACE%\php-sdk\bin
 
-#       - run: bin\phpsdk_buildtree.bat phpmaster
+      - run: phpsdk_buildtree.bat phpmaster
 
 #       - run: |
 #           git status
@@ -40,10 +40,10 @@ jobs:
           ref: php-8.0.0alpha1
           path: php-src
 
-#       - run: ..\php-sdk\bin\phpsdk_deps --update --branch master
-#         working-directory: php-src
-#         env:
-#           PHP_SDK_VS: vs16
+      - run: phpsdk_deps --update --branch master
+        working-directory: php-src
+        env:
+          PHP_SDK_VS: vs16
 
 #       - run: |
 #           git status
