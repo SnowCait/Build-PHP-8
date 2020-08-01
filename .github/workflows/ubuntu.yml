@@ -32,4 +32,4 @@ jobs:
       - run: ls -la
       - run: make -j4
       - run: ls -la
-      - run: git status
+      - run: git status -s
