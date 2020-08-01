@@ -23,7 +23,7 @@ jobs:
       - run: apt list pkg-config build-essential autoconf bison re2c libxml2-dev libsqlite3-dev
       - run: sudo apt install -y autoconf re2c libxml2-dev
       - run: apt list pkg-config build-essential autoconf bison re2c libxml2-dev libsqlite3-dev
-      - run: ./buildconf
+      - run: ./buildconf --force
       - run: ls -la
       - run: ./configure
       - run: ls -la
