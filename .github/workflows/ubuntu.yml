@@ -32,4 +32,9 @@ jobs:
       - run: ls -la
       - run: make -j4
       - run: ls -la
-      - run: git status -s
+      - run: git ls-files --other --ignored --exclude-standard
+      - run: make TEST_PHP_ARGS=-j4 test
+      - run: make install
+      - run: ls -la
+      - run: git status
+      - run: git ls-files --other --ignored --exclude-standard
