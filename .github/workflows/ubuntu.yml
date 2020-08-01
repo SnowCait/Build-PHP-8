@@ -15,7 +15,9 @@ jobs:
           repository: php/php-src
           ref: php-8.0.0alpha3
       - run: ls -la
+      - run: apt list pkg-config build-essential autoconf bison re2c libxml2-dev libsqlite3-dev
       - run: sudo apt install -y autoconf re2c libxml2-dev
+      - run: apt list pkg-config build-essential autoconf bison re2c libxml2-dev libsqlite3-dev
       - run: ./buildconf
       - run: ls -la
       - run: ./configure
