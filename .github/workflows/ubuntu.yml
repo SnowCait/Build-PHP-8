@@ -11,13 +11,13 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-20.04, ubuntu-18.04]
+        php: [php-7.4.8, php-8.0.0alpha3]
 
     steps:
       - uses: actions/checkout@v2
         with:
           repository: php/php-src
-          ref: php-7.4.8
-#           ref: php-8.0.0alpha3
+          ref: ${{ php }}
       - run: ls -la
       - run: apt list pkg-config build-essential autoconf bison re2c libxml2-dev libsqlite3-dev
       - run: sudo apt install -y autoconf re2c libxml2-dev
