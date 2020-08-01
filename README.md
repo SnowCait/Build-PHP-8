@@ -1,5 +1,6 @@
 # Build PHP 8
 - [php/php-src: The PHP Interpreter](https://github.com/php/php-src)
+  - [Building PHP source code](https://github.com/php/php-src#building-php-source-code)
 
 ## Windows
 - [PHP: internals:windows:stepbystepbuild_sdk_2](https://wiki.php.net/internals/windows/stepbystepbuild_sdk_2)
