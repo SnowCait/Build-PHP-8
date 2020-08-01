@@ -12,8 +12,7 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu-18.04]
-        php: [master]
-#         php: [php-7.4.8, php-8.0.0alpha3, master]
+        php: [php-7.4.8, php-8.0.0alpha3, master]
 
     steps:
       - uses: actions/checkout@v2
@@ -25,7 +24,9 @@ jobs:
       - run: sudo apt install -y autoconf re2c libxml2-dev
       - run: apt list pkg-config build-essential autoconf bison re2c libxml2-dev libsqlite3-dev
       - run: ./buildconf
-#       - run: ./buildconf --force
+        if: matrix.php == "master"
+      - run: ./buildconf --force
+        if: matrix.php != "master"
       - run: ls -la
       - run: ./configure
       - run: ls -la
