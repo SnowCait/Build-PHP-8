@@ -1,6 +1,7 @@
 # Build PHP 8
 - [php/php-src: The PHP Interpreter](https://github.com/php/php-src)
   - [Building PHP source code](https://github.com/php/php-src#building-php-source-code)
+- [PHPをビルドする — PHP Internals Book 日本語訳](http://www.phpinternalsbook-ja.com/build_system/building_php.html)
 
 ## Windows
 - [PHP: internals:windows:stepbystepbuild_sdk_2](https://wiki.php.net/internals/windows/stepbystepbuild_sdk_2)
