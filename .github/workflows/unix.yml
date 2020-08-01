@@ -11,7 +11,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-18.04, macos-10.15]
+        os: [ubuntu-18.04]
+#         os: [ubuntu-18.04, macos-10.15]
         php: [php-7.4.8, php-8.0.0alpha3, master]
 
     steps:
@@ -21,7 +22,7 @@ jobs:
           ref: ${{ matrix.php }}
       - run: ls -la
       - run: apt list pkg-config build-essential autoconf bison re2c libxml2-dev libsqlite3-dev
-      - run: sudo apt install -y autoconf re2c libxml2-dev
+      - run: sudo apt install -y autoconf re2c libxml2-dev # pkg-config build-essential bison libsqlite3-dev are already installed
       - run: apt list pkg-config build-essential autoconf bison re2c libxml2-dev libsqlite3-dev
       - run: ./buildconf
         if: ${{ matrix.php == 'master' }}
