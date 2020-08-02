@@ -1,4 +1,4 @@
-name: Ubuntu, Mac
+name: Ubuntu
 
 on:
   workflow_dispatch:
@@ -11,8 +11,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-18.04]
-#         os: [ubuntu-18.04, macos-10.15]
+        os: [ubuntu-20.04, ubuntu-18.04]
         php: [php-7.4.8, php-8.0.0alpha3, master]
 
     steps:
@@ -28,14 +27,9 @@ jobs:
         if: ${{ matrix.php == 'master' }}
       - run: ./buildconf --force
         if: ${{ matrix.php != 'master' }}
-      - run: ls -la
+      - run: git ls-files --other --ignored --exclude-standard
       - run: ./configure
-      - run: ls -la
+      - run: git ls-files --other --ignored --exclude-standard
       - run: make -j4
-      - run: ls -la
       - run: git ls-files --other --ignored --exclude-standard
       - run: make TEST_PHP_ARGS=-j4 test
-#       - run: make install
-#       - run: ls -la
-#       - run: git status
-#       - run: git ls-files --other --ignored --exclude-standard
