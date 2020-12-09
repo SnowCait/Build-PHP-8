@@ -27,12 +27,18 @@ jobs:
       - run: ls -la
       
       # install
-      - run: brew info autoconf
-      - run: brew info libtool
       - run: brew install automake
       - run: brew install re2c
       - run: brew install flex
       - run: brew install bison
+      
+      # info
+      - run: brew info autoconf
+      - run: brew info libtool
+      - run: brew info automake
+      - run: brew info re2c
+      - run: brew info flex
+      - run: brew info bison
       
       # buildconf
       - run: ./buildconf
@@ -40,4 +46,8 @@ jobs:
       
       # configure
       - run: ./configure
+      - run: git ls-files --other --ignored --exclude-standard
+      
+      # make
+      - run: make
       - run: git ls-files --other --ignored --exclude-standard
