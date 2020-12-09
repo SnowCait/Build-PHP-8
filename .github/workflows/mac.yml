@@ -21,4 +21,4 @@ jobs:
           repository: php/php-src
           ref: ${{ matrix.php }}
       - run: ls -la
-      - run: brew list autoconf automake libtool re2c flex bison
+      - run: brew list autoconf
