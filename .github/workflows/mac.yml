@@ -16,14 +16,23 @@ jobs:
         php: [master]
 
     steps:
+      # info
+      - run: php -v
+      
+      # checkout
       - uses: actions/checkout@v2
         with:
           repository: php/php-src
           ref: ${{ matrix.php }}
       - run: ls -la
+      
+      # install
       - run: brew info autoconf
       - run: brew info libtool
       - run: brew install automake
       - run: brew install re2c
       - run: brew install flex
       - run: brew install bison
+      
+      # build
+      - run: ./buildconf
