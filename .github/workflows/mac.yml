@@ -48,7 +48,7 @@ jobs:
       - run: git ls-files --other --ignored --exclude-standard
       
       # configure
-      - run: ./configure
+      - run: ./configure --enable-debug
       - run: git ls-files --other --ignored --exclude-standard
       
       # make
